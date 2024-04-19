@@ -7,4 +7,5 @@ class Alumno(models.Model):
     semestre = models.IntegerField()
 
     def __str__(self):
-        return f"{self.numcontrol} {self.nombre} {self.semestre}"
+        texto = " {0} - {1} - {2}"
+        return texto.format(self.numcontrol,self.nombre,self.semestre)

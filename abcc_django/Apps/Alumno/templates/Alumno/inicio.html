@@ -1,0 +1,42 @@
+{% extends "Alumno/Apps.html" %}
+{% block content %}
+
+<h1 class="my-4">
+    <small>Lista de Alumnos</small>
+</h1>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="row">
+    <div class="col-10" style="overflow-x: scroll">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Numero de control</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Ver</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for itemalumno in valumno %}
+                <tr>
+                    <td>{{ itemalumno.numcontrol}}</td>
+                    <td>{{ itemalumno.nombre}}</td>
+                    <td>{{ itemalumno.semestre}}</td>
+                    <td><a href="{% url 'alumno_update' itemalumno.id %}"><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></a></td>
+                    <td><a href="{% url 'alumno_view' itemalumno.id %}"><button type="button" class="btn btn-outline-info btn-sm">Ver</button></a></td>
+                    <td><a href="{% url 'alumno_delete' itemalumno.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Borrar</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

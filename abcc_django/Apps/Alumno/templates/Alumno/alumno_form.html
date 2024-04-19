@@ -1,0 +1,23 @@
+{% extends "Alumno/Apps.html" %}
+{% block content %}
+
+    <h1 class="my-4">{% if request.path == '/new' %}Agregar Alumno {% else %} Editar Alumno {% endif %}
+        {% if request.path != '/new' %}<small>{{alumno.numcontrol}}</small>{% endif %}
+    </h1>
+
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in alumno_form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                    </div>
+                {% endfor %}
+                <input type="submit" {% if request.path == '/new' %} fvalue="add" {% else %} value="Aceptar" {% endif %} class="btn btn-success" />
+                <a href="{% url 'inicio' %}"><button type="button" class="btn btn-secondary">Salir</button></a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
